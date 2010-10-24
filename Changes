@@ -1,5 +1,8 @@
 Revision history for Color-Model-Munsell-Util
 
-0.01    Date/time
+0.01    21 Oct 2010
         First version, released on an unsuspecting world.
 
+0.02    24 Oct 2010
+	Corrected typo.
+	updated demo.pl a bit.

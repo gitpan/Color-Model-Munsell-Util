@@ -1,5 +1,4 @@
-#!perl
-
+#!/usr/bin/perl
 use warnings;
 use strict;
 
@@ -8,17 +7,17 @@ use Color::Model::Munsell::Util;
 
 =head1 NAME
 
-Demo of Color::Model::Munsell::Util
+demo.pl - Demo program of Color::Model::Munsell::Util
 
 =head1 SYNOPSIS
 
-$ perl demo.pl > some.html
+    perl demo.pl > some.html
 
 =head1 DESCRIPTION
 
 This demo program makes HTML file which contains sample colors table of
-Munsell and converted it to RGB Hex triplet.
-Colors of this sample are Macbeth ColorChecker colors and regulated
+Munsell and converted to RGB Hex triplet of it.
+Colors of this are from Macbeth ColorChecker colors and regulated
 English-named colors by JIS (Japanese Industrial Standards) Z 8102:2001.
 
 =cut
@@ -29,9 +28,12 @@ my $Title = "Demo of Color::Model::Munsell::Util";
 # Load color data
 my @Colors = ();
 while (<DATA>){
-    tr/\r\n//d;
+    tr/\x0a\x0d//d;
     next unless $_;
-    next if /^#/;
+    if ( /^#(.*)/ ){
+        push @Colors, { title=> $1 };
+        next;
+    }
     my ($name, @d) = split(/\t/);
     push @Colors, {
         name => $name,
@@ -61,6 +63,10 @@ td {
 __HTMLHEAD__
 
 foreach (@Colors){
+    if ( defined($$_{title}) ){
+        print qq(<tr><td colspan=7 style="background-color:#ccc"><em>$$_{title}</em></td></tr>\n);
+        next;
+    }
     my $m = $$_{m};
     print "<tr><td>$$_{name}</td><td>$m</td>";
     foreach my $model ( qw(sRGB AppleRGB PAL AdobeRGB NTSC) ){
@@ -106,7 +112,6 @@ Macbeth21	N	6.5
 Macbeth22	N	5
 Macbeth23	N	3.5
 Macbeth24	N	2
-
 # JIS Z 8102 - English color name
 Rose Red	7.5RP	5	12
 Rose pink	10RP	7	8

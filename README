@@ -5,7 +5,7 @@ Utility subroutines for Color::Model::Munsell
 ----------
 
 INSTALLATION
-
+~~~~~~~~~~~~
 To install this module, run the following commands:
 
 	perl Makefile.PL
@@ -15,15 +15,15 @@ To install this module, run the following commands:
 
 
 DEMO
-
+~~~~
 After install, execute demo/demo.pl for making demo html which shows
-Popular Munsell color and RGB colors of several RGB models.
+popular Munsell color and its RGB colors of several RGB models.
 
 	perl demo/demo.pl > somedir/demo.html
 
 
 SUPPORT AND DOCUMENTATION
-
+~~~~~~~~~~~~~~~~~~~~~~~~~
 After installing, you can find documentation for this module with the
 perldoc command.
 

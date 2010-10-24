@@ -14,7 +14,7 @@ WriteMakefile(
     PREREQ_PM => {
         'Test::More' => 0,
         'Color::Model::RGB' => 0,
-        'Color::Model::Munsel' => 0,
+        'Color::Model::Munsell' => 0,
         'Math::VectorReal' => 0,
         'Scalar::Util' => 0,
         'List::Util' => 0,

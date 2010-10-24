@@ -1,14 +1,14 @@
 # =============================================================================
 package Color::Model::Munsell::Util;
 # -----------------------------------------------------------------------------
-$Color::Model::Munsell::Util::VERSION = '0.01';
+$Color::Model::Munsell::Util::VERSION = '0.02';
 # -----------------------------------------------------------------------------
 use warnings;
 use strict;
 
 =head1 NAME
 
-Color::Model::Munsell::Util - Utility subroutines for Color::Model::Munsell
+Color::Model::Munsell::Util - Utility functions for Color::Model::Munsell
 
 =head1 SYNOPSIS
 
@@ -22,8 +22,8 @@ Color::Model::Munsell::Util - Utility subroutines for Color::Model::Munsell
 
 =head1 DESCRIPTION
 
-C<Color::Model::Munsell::Util> gives some utility subroutines for color
-conversion from Munsell to CIE xyY, XYZ or RGB.
+C<Color::Model::Munsell::Util> gives some utility functions for color
+conversion from Munsell to CIE xyY, XYZ or RGB, etc.
 
 =cut
 
@@ -362,7 +362,7 @@ Munsell2XYZ() and Munsell2XYZD65() returns an array of CIE X,Y and Z.
     printf("%s -> CIE XYZ (%.f, %.f, %.f) via Chromatic Adaptation", $m, Munsell2XYZD65($m));
 
 Munsell2XYZ() simply calculates XYZ from xyY. And Munsell2XYZD65() calculates
-them with chromatic adaptatation to illuminant D65. Adaptation type shuld be
+them with chromatic adaptatation to illuminant D65. Adaptation type must be
 "XYZ", "vonKries", "Bradford" or "None". If Omitted, "Bradford" is used. 
 Specifying "None" is same as calling Munsell2XYZ().
 
@@ -439,15 +439,15 @@ my %_matXYZ2rgb = (
     Munsell2rgb( $m [, "RGBModel" [, "ChromaticAdaptType" ]] )
     Munsell2RGB( $m [, "RGBModel" [, "ChromaticAdaptType" [, $gamma ]]] )
 
-Munsell2rgb() returns an array of r, g and b values which calculated from
+Munsell2rgb() returns an array of R, G and B values which calculated from
 XYZ with transformation matrix.
-And Munsell2RGB() returns C<Color::Model::RGB> object.
+And Munsell2RGB() returns RGB values with C<Color::Model::RGB> object which applied gamma value.
 
     $m = Color::Model::Munsell->new("7PB 2.5/3");
     printf("%s -> RGB %s of sRGB", $m, Munsell2RGB($m));
     printf("%s -> RGB %s of AdobeRGB(1998)", $m, Munsell2RGB($m,"AdobeRGB"), 2.2);
 
-RGBModel should be "sRGB", "AdobeRGB" that means Adobe RGB(1998), "AppleRGB"
+RGBModel must be "sRGB", "AdobeRGB" that means Adobe RGB(1998), "AppleRGB"
 or "NTSC". A gamma value will be used when RGB model is not sRGB.
 
 =cut
@@ -515,7 +515,7 @@ sub Munsell2RGB
     calc_Yc( $m )
 
 calc_Yc() calculates Y value of illuminant C and 2 degree observer from Munsell
-value. Argument must be a I<Color::Model::Munsell> object or Munsell value.
+value with approximate calculation. Argument must be a I<Color::Model::Munsell> object or Munsell value.
 
     $m = Color::Model::Munsell->new("5R 4/14")
     printf "%.4f", calc_Yc( $m );
@@ -562,18 +562,13 @@ automatically be notified of progress on your bug as I make changes.
 
 =head1 SEE ALSO
 
-L<Color::Model::Munsell>
-L<Color::Model::RGB>
+L<Color::Model::Munsell>, L<Color::Model::RGB>
 
 =head1 REFERENCES
 
-Munsell Color Science Laboratory, R.I.T
-L<http://www.cis.rit.edu/mcsl>
- - Munsell-xyY data comes from this.
+L<Munsell Color Science Laboratory, R.I.T|http://www.cis.rit.edu/mcsl> - Munsell-xyY data are from this site.
 
-BruceLindbloom.com
-L<http://www.brucelindbloom.com/>
- - Transformation matrixes and important knowledge are from this site.
+L<BruceLindbloom.com|http://www.brucelindbloom.com> - Chromatic adaptation matrixes, transformation matrixes and important knowledge are from this site.
 
 Japanese Industrial Standards(JIS) JIS Z 8721(1993)
 
@@ -590,7 +585,7 @@ by the Free Software Foundation; or the Artistic License.
 1; # End of Color::Model::Munsell::Util
 __DATA__
 # This data are from MCSL, R.I.T
-# (http://www.cis.rit.edu//research/mcsl2/online/munsell_data/all.dat)
+# (A page of Munsell Relational Data on http://mcsl.rit.edu/)
 #       H         V         C         x         y         Y
     2.5GY        0.2         2     0.713     1.414   0.237
       5GY        0.2         2     0.449     1.145   0.237
@@ -5588,4 +5583,4 @@ __DATA__
      7.5Y         10        20     0.467     0.521    102.57
      7.5Y         10        22     0.472     0.528    102.57
 # This data are from MCSL, R.I.T
-# (http://www.cis.rit.edu//research/mcsl2/online/munsell_data/all.dat)
+# (A page of Munsell Relational Data on http://mcsl.rit.edu/)

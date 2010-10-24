@@ -1,7 +1,7 @@
 --- #YAML:1.0
 name:               Color-Model-Munsell-Util
-version:            0.01
-abstract:           Utility subroutines for Color::Model::Munsell
+version:            0.02
+abstract:           Utility functions for Color::Model::Munsell
 author:
     - Takahiro Onodera <ong@garakuta.net>
 license:            bsd
@@ -11,7 +11,7 @@ configure_requires:
 build_requires:
     ExtUtils::MakeMaker:  0
 requires:
-    Color::Model::Munsel:  0
+    Color::Model::Munsell:  0
     Color::Model::RGB:    0
     List::Util:           0
     Math::VectorReal:     0
