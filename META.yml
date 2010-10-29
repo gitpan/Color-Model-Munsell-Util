@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               Color-Model-Munsell-Util
-version:            0.02
+version:            0.03
 abstract:           Utility functions for Color::Model::Munsell
 author:
     - Takahiro Onodera <ong@garakuta.net>

@@ -1,7 +1,7 @@
 # =============================================================================
 package Color::Model::Munsell::Util;
 # -----------------------------------------------------------------------------
-$Color::Model::Munsell::Util::VERSION = '0.02';
+$Color::Model::Munsell::Util::VERSION = '0.03';
 # -----------------------------------------------------------------------------
 use warnings;
 use strict;
@@ -13,12 +13,11 @@ Color::Model::Munsell::Util - Utility functions for Color::Model::Munsell
 =head1 SYNOPSIS
 
     use Color::Model::Munsell;
-    use Color::Model::Munsell::Util qw(hvc2RGB);
+    use Color::Model::Munsell::Util;
     use Color::Model::RGB;
 
     my $m = Color::Model::Munsell->new("5R 4.5/14");
-
-    printf("Munsell: %s = RGB: #%s\n", $m, hvc2RGB($m));
+    printf("Munsell: %s = RGB: #%s\n", $m, Munsell2RGB($m));
 
 =head1 DESCRIPTION
 
@@ -385,7 +384,7 @@ sub Munsell2XYZD65
 {
     my $m = shift;                          # Color::Model::Munsell object
     unless ( defined($m) && ref($m) eq 'Color::Model::Munsell' ){
-        Carp::croak("Munsell2XYZ() needs Color::Model::Munsell object.");
+        Carp::croak("Munsell2XYZD65() needs Color::Model::Munsell object.");
     }
 
     my $atype = shift || 'Bradford';        # Chromatic Adaptation type
@@ -456,7 +455,7 @@ sub Munsell2rgb
 {
     my $m = shift;                      # Color::Model::Munsell object
     unless ( defined($m) && ref($m) eq 'Color::Model::Munsell' ){
-        Carp::croak("Munsell2XYZ() needs Color::Model::Munsell object.");
+        Carp::croak("Munsell2rgb() needs Color::Model::Munsell object.");
     }
     my $rgbtype = shift || 'sRGB';      # RGB type
     my $atype   = shift || 'Bradford';  # Chromatic Adaptation type
@@ -481,7 +480,7 @@ sub Munsell2RGB
 {
     my $m = shift;                      # Color::Model::Munsell object
     unless ( defined($m) && ref($m) eq 'Color::Model::Munsell' ){
-        Carp::croak("Munsell2XYZ() needs Color::Model::Munsell object.");
+        Carp::croak("Munsell2RGB() needs Color::Model::Munsell object.");
     }
     my $rgbtype = shift || 'sRGB';      # RGB type
     my $atype   = shift || 'Bradford';  # Chromatic Adaptation type
@@ -552,7 +551,7 @@ sub calc_Yc
 
 =head1 AUTHOR
 
-Takahiro Onodera, C<< <ong at garakuta.net> >>
+Takahiro Onodera, C<< <cpan@garakuta.net> >>
 
 =head1 BUGS
 
@@ -566,15 +565,15 @@ L<Color::Model::Munsell>, L<Color::Model::RGB>
 
 =head1 REFERENCES
 
-L<Munsell Color Science Laboratory, R.I.T|http://www.cis.rit.edu/mcsl> - Munsell-xyY data are from this site.
+Munsell Color Science Laboratory, R.I.T - L<http://www.cis.rit.edu/mcsl> - Munsell-xyY data are from this site.
 
-L<BruceLindbloom.com|http://www.brucelindbloom.com> - Chromatic adaptation matrixes, transformation matrixes and important knowledge are from this site.
+BruceLindbloom.com - L<http://www.brucelindbloom.com> - Chromatic adaptation matrixes, transformation matrixes and important knowledge are from this site.
 
 Japanese Industrial Standards(JIS) JIS Z 8721(1993)
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright 2010 T.Onodera.
+Copyright 2010 Takahiro Onodera.
 
 This program is free software; you can redistribute it and/or modify it
 under the terms of either: the GNU General Public License as published
